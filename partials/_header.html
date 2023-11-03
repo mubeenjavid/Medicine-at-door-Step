@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+</head>
+<body>
+    
+
+
+
 <?php
 session_start();
 
@@ -23,13 +35,13 @@ echo '
       
     <li class="nav-item me-2">
    
-    <a class="btn btn-outline-success"  href="signup/account.php">Pharmacy Panel</a>
+    <a class="btn btn-outline-success"  href="signup/account.html">Pharmacy Panel</a>
       
     </li>
 
       <li class="nav-item">
    
-      <a class="btn btn-outline-warning"  href="contact.php">Contact</a>
+      <a class="btn btn-outline-warning"  href="contact.html">Contact</a>
         
       </li>
     </ul>
@@ -37,7 +49,7 @@ echo '
 
   if(isset($_SESSION['loggedin']) &&  $_SESSION['loggedin'] = true)
   {
-      echo'<form action="search.php" method="post" class="d-flex">
+      echo'<form action="search.html" method="post" class="d-flex">
       <input type="text" class="form-control me-2" name="med" placeholder="Search"
       aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -86,3 +98,6 @@ else{
 
 }
 ?>
+
+  </body>
+</html>
