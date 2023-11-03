@@ -1,53 +1,4 @@
-<!-- connecting to the Server and  Database -->
-<!-- agr servermethod post ho to hi ap server or database sy connect  -->
-<?php
-$showAlert=false;
-$showAlert2=false;
-if($_SERVER["REQUEST_METHOD"]=='POST'){
-include('clientdbconect.php');
-$username=$_POST['user_name'];
-$password=$_POST['password'];
 
-
-        // without password_hash y wali query ho ghi
-        // $sql="SELECT * FROM `USERS123` WHERE `username`='$username' AND `password`='$password'";
-            // with password_hash y wali query ho ghi neechy likhi hui hai password match hony ky baad
-        $sql="SELECT * FROM `clientsignup` WHERE `user_name`='$username'";
-        // mtlb agr username match ho jaye to fetch assoc sy database mein sy sari password wali values fetch kro agr koi bhi value hamary password_verify jo ky builtin function hai or arguments mein hamara password wala variable or poori password wali row leta hai wo wahan sy check kry ga agr password match ho gaya to agy kaam kry ga warna else mein jaa ky error show krwa dy ga
-        $result=mysqli_query($conn,$sql);
-        $num= mysqli_num_rows($result);//means agr username of password database mein hain to un ki tadaad kitni hai agr 1 hi account hai to hi login kro agr account hai hi ni means 0 account hai to false error kr do show humy warna agy jany do
-        if($num==1){
-            while($row=mysqli_fetch_assoc($result)){
-            if(password_verify($password,$row['password'])){
-            $showAlert=true;
-            session_start();
-            $_SESSION['loggedin']=true;
-            $_SESSION['user_name']=$user_name;
-            header("location:index.php");
-        }
-        else{
-            $showAlert2=true;
-     
-            }
-        }
-      
-            // with password_hash y wali query ho ghi
-        // ab yahan py session laga rahy hain or password jaisy hi from submit ho ga agr account hua bandy ka to wo welcome page py chala jaye ga
-        // session_start();
-        // $_SESSION['loggedin']=true;// taaky agr session mein login naa ho to y hamary welcome page py new bandon ko naa jany dy iss ki mazeed coding welcome page py hai
-        // $_SESSION['username']=$username;
-        // // kiss page py bhjna chaty ho wo header mein likho header function ky ander location lazmi likhna
-        // header("location:welcome.php");
-    }
-    else{
-       $showAlert2=true;
-    //    echo "Error".mysqli_error($result);
-
-    }
-
-
-}
-?>
 <!doctype html>
 <html lang="en">
 
@@ -141,27 +92,9 @@ background-color:green;
 </head>
 
 <body>
-    <?php
-//   require("ovrallnavbar.php");
-  if($showAlert){
-    echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Success!</strong> We found your account You can logged in .
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div> ';
-    }
+   
+
   
-  if($showAlert2){
-    echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Error!</strong> Your account Not Found.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div> ';
-    }
-  
-  ?>
   <div class='bg'>
       <div class="container  mainDiv">
         <h1 align="center">Login to Our Webstie</h1>
